@@ -1,3 +1,10 @@
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from products.views import ProductViewSet
+from blogs.views import PostViewSet
+from cart.views import CartViewSet
+from orders.views import OrderViewSet
+from users.views import UserViewSet
 """
 URL configuration for futbox project.
 
@@ -17,6 +24,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
+router.register(r'blog', PostViewSet)
+router.register(r'cart', CartViewSet)
+router.register(r'orders', OrderViewSet)
+router.register(r'users', UserViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include (router.urls)),
+    
 ]
